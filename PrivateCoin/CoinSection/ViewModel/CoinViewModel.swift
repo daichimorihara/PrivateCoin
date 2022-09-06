@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 @MainActor
 class CoinViewModel: ObservableObject {
@@ -16,7 +17,7 @@ class CoinViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var portCoins = [Coin]()
     let service = CoinService()
-    let portService = PortDataService()
+    let portService = PortDataService.shared
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -104,5 +105,13 @@ class CoinViewModel: ObservableObject {
             $0.symbol.lowercased().contains(lower) ||
             $0.id.lowercased().contains(lower)
         })
+    }
+    
+    var totalValue: Double {
+        var total: Double = 0
+        for coin in portCoins {
+            total += coin.currentValue
+        }
+        return total
     }
 }

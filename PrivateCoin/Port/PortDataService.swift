@@ -10,16 +10,19 @@ import CoreData
 import UIKit
 
 class PortDataService {
+    static let shared = PortDataService()
+    
     private let container: NSPersistentContainer
     @Published var savedEntities = [PortEntity]()
     
-    init() {
+    private init() {
         container = NSPersistentContainer(name: "PortContainer")
         container.loadPersistentStores { _, err in
             if let err = err {
                 print("Failed to laod Core Data \(err)")
             }
             //
+            self.container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
             self.getPort()
         }
     }

@@ -29,6 +29,8 @@
 		4209797828C48A3400ED8FD0 /* PortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4209797728C48A3400ED8FD0 /* PortViewModel.swift */; };
 		4209797A28C48A5100ED8FD0 /* PortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4209797928C48A5100ED8FD0 /* PortView.swift */; };
 		4211D40B28C5ACE500CF557D /* AddPortVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4211D40A28C5ACE500CF557D /* AddPortVIew.swift */; };
+		42E2496928C6DE0C009E2208 /* PortCoinCol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2496828C6DE0C009E2208 /* PortCoinCol.swift */; };
+		42E2496B28C6FC38009E2208 /* PortRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2496A28C6FC38009E2208 /* PortRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		4209797728C48A3400ED8FD0 /* PortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortViewModel.swift; sourceTree = "<group>"; };
 		4209797928C48A5100ED8FD0 /* PortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortView.swift; sourceTree = "<group>"; };
 		4211D40A28C5ACE500CF557D /* AddPortVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPortVIew.swift; sourceTree = "<group>"; };
+		42E2496828C6DE0C009E2208 /* PortCoinCol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortCoinCol.swift; sourceTree = "<group>"; };
+		42E2496A28C6FC38009E2208 /* PortRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,8 @@
 				4209797728C48A3400ED8FD0 /* PortViewModel.swift */,
 				4209797928C48A5100ED8FD0 /* PortView.swift */,
 				4211D40A28C5ACE500CF557D /* AddPortVIew.swift */,
+				42E2496828C6DE0C009E2208 /* PortCoinCol.swift */,
+				42E2496A28C6FC38009E2208 /* PortRow.swift */,
 			);
 			path = Port;
 			sourceTree = "<group>";
@@ -253,10 +259,12 @@
 				4209794828C4826300ED8FD0 /* ContentView.swift in Sources */,
 				4209796928C4832800ED8FD0 /* CoinViewModel.swift in Sources */,
 				4209796F28C4838300ED8FD0 /* PreviewProvider.swift in Sources */,
+				42E2496928C6DE0C009E2208 /* PortCoinCol.swift in Sources */,
 				4209796B28C4837100ED8FD0 /* Color.swift in Sources */,
 				4209796728C4832800ED8FD0 /* CoinRow.swift in Sources */,
 				4209796E28C4838300ED8FD0 /* Double.swift in Sources */,
 				4209796828C4832800ED8FD0 /* CoinImageView.swift in Sources */,
+				42E2496B28C6FC38009E2208 /* PortRow.swift in Sources */,
 				4209796428C4832800ED8FD0 /* CoinView.swift in Sources */,
 				4209797828C48A3400ED8FD0 /* PortViewModel.swift in Sources */,
 				4209795728C482B900ED8FD0 /* CoinService.swift in Sources */,

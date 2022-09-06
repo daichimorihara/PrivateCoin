@@ -9,52 +9,70 @@ import SwiftUI
 
 struct PortView: View {
     @StateObject var vm = CoinViewModel()
+    @State private var showEdit = false
     
     var body: some View {
         VStack {
-            Text("My holdings")
-                .foregroundColor(.theme.base)
-                .font(.headline)
-                .fontWeight(.heavy)
-                .frame(width: UIScreen.main.bounds.width)
-                .overlay(
-                    Button(action: {
-                        
-                    }, label: {
-                        Image(systemName: "plus")
-                            .padding(.trailing)
-                            
-                    })
-                    ,alignment: .trailing
-                )
-            
-            HStack {
-                Text("Symbol")
-                Spacer()
-                Text("Value")
-                Spacer()
-                Text("Percentage")
-                    
-            }
-            .padding()
-            .font(.caption)
-            .foregroundColor(.theme.secondary)
-            
+            header
+            title
             List {
                 ForEach(vm.portCoins) { coin in
-                    Text(coin.name)
+                    PortRow(coin: coin, allocation: coin.currentValue / vm.totalValue * 100)
                 }
             }
             .listStyle(PlainListStyle())
             
             Spacer()
         }
+        .fullScreenCover(isPresented: $showEdit) {
+            
+        } content: {
+            AddPortVIew()
+        }
+
         
     }
+    
+    
 }
 
 struct PortView_Previews: PreviewProvider {
     static var previews: some View {
         PortView()
+    }
+}
+
+extension PortView {
+    private var header: some View {
+        Text("My holdings")
+            .foregroundColor(.theme.base)
+            .font(.headline)
+            .fontWeight(.heavy)
+            .frame(width: UIScreen.main.bounds.width)
+            .overlay(
+                Button(action: {
+                    showEdit.toggle()
+                }, label: {
+                    Text("Edit")
+                        .fontWeight(.semibold)
+                        .padding(.horizontal)
+                        
+                })
+                ,alignment: .leading
+            )
+    }
+    
+    private var title: some View {
+        HStack(spacing: 40) {
+            Text("Symbol")
+            Spacer()
+            Text("Value")
+            Text("Percentage")
+                .frame(width: UIScreen.main.bounds.width / 4, alignment: .trailing)
+                
+        }
+        .padding()
+        .font(.caption)
+        .foregroundColor(.theme.secondary)
     }
 }

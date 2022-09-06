@@ -13,82 +13,22 @@ struct AddPortVIew: View {
     @State private var selectedCoin: Coin?
     @State private var show = false
     @State private var amount: String = ""
+    @State private var check = false
     
     var body: some View {
-        
-        VStack {
-            NavigationLink(isActive: $show) {
-                
-            } label: {
-                EmptyView()
-            }
-
-            header
-            
-            SearchBarView(searchText: $vm.searchText)
-            
-            ZStack {
-                if show {
-                    if let selectedCoin = selectedCoin {
-                        VStack {
-                            CoinRow(coin: selectedCoin)
-
-                            HStack {
-                                Text("Current price of \(selectedCoin.symbol.uppercased())")
-                                Spacer()
-                                Text(selectedCoin.currentPrice.asCurrency())
-                            }
-                            Divider()
-                            HStack {
-                                Text("Amount holding")
-                                Spacer()
-                                TextField("Ex: 1.6", text: $amount)
-                                    .multilineTextAlignment(.trailing)
-                                    .keyboardType(.decimalPad)
-                                    
-
-                            }
-                            Divider()
-                            HStack {
-                                Text("Current value:")
-                                Spacer()
-                                Text(getValue)
-                            }
-                        }
-                    }
-                } else {
-                    List {
-                        ForEach(vm.portAddCoins) { coin in
-                            CoinRow(coin: coin)
-                                .listRowInsets(.init(top: 10, leading: 5, bottom: 10, trailing: 5))
-                                .onTapGesture {
-                                    selectedCoin = coin
-                                    show = true
-                                }
-                        }
-                    }
-                    .listStyle(PlainListStyle())
+        ScrollView {
+            VStack {
+                header
+                SearchBarView(searchText: $vm.searchText)
+                coinCol
+                if let selectedCoin = selectedCoin {
+                    input(selectedCoin: selectedCoin)
                 }
-
-            }
-
-
-            Spacer()
+                Spacer()
         }
-        
-
     }
-    
-//    func getcurrentValue() -> String {
-//        if let selectedCoin = selectedCoin {
-//            let price = selectedCoin.currentPrice
-//            let amount = Double(amount) ?? 0.0
-//            let value = price * amount
-//            return value.asCurrency()
-//        } else {
-//            return "$0.00"
-//        }
-//    }
+}
+
     var getValue: String {
         if let selectedCoin = selectedCoin {
             let price = selectedCoin.currentPrice
@@ -126,16 +66,87 @@ extension AddPortVIew {
                     
                     Spacer()
                     
-                    Button {
-                        
-                    } label: {
-                        Text("Save")
-                            .fontWeight(.semibold)
-                    }
+                    HStack {
+                        Image(systemName: "checkmark")
+                            .opacity(check ? 1 : 0)
 
+                        Button {
+                            saveButtonPressed()
+                        } label: {
+                            Text("Save")
+                                .fontWeight(.semibold)
+                        }
+                    }
                 }
                     .foregroundColor(.theme.base)
                     .padding(.horizontal)
             )
+    }
+    
+    private func input(selectedCoin: Coin) -> some View {
+        VStack {
+            HStack {
+                Text("Current price of \(selectedCoin.symbol.uppercased())")
+                Spacer()
+                Text(selectedCoin.currentPrice.asCurrency())
+            }
+            .padding()
+            
+            Divider()
+            
+            HStack {
+                Text("Amount holding")
+                Spacer()
+                TextField("Ex: 1.6", text: $amount)
+                    .multilineTextAlignment(.trailing)
+                    .keyboardType(.decimalPad)
+            }
+            .padding()
+            
+            Divider()
+            HStack {
+                Text("Current value:")
+                Spacer()
+                Text(getValue)
+            }
+            .padding()
+        }
+        .font(.headline)
+    }
+    
+    private var coinCol: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHStack {
+                ForEach(vm.searchText.isEmpty ? vm.portCoins : vm.filteredCoins) { coin in
+                    PortCoinCol(coin: coin)
+                        .frame(width: 75)
+                        .padding(5)
+                        .onTapGesture {
+                            selectedCoin = coin
+                        }
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(selectedCoin?.id == coin.id ?
+                                        Color.theme.green : Color.clear, lineWidth: 1)
+                        )
+                }
+            }
+            .frame(height: 120)
+            .padding(.leading, 5)
+        }
+    }
+    
+    private func saveButtonPressed() {
+        guard let coin = selectedCoin,
+              let amount = Double(amount) else {
+            return
+        }
+        
+        vm.updatePort(coin: coin, amount: amount)
+        check = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            check = false
+        }
+        
     }
 }

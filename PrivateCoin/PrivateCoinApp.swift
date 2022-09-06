@@ -11,7 +11,7 @@ import SwiftUI
 struct PrivateCoinApp: App {
     var body: some Scene {
         WindowGroup {
-            AddPortVIew()
+            PortView()
         }
     }
 }
