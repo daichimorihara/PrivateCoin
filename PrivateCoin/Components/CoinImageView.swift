@@ -25,9 +25,9 @@ struct CoinImageView: View {
                 Image(systemName: "questionmark.circle")
             }
         }
-        .task {
-            await vm.fetchCoinImage(urlString: coin.image)
-        }
+//        .task {
+//            await vm.fetchCoinImage(urlString: coin.image)
+//        }
     }
 }
 

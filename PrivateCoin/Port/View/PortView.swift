@@ -68,7 +68,7 @@ extension PortView {
             Spacer()
             Text("Value")
             Text("Percentage")
-                .frame(width: UIScreen.main.bounds.width / 4, alignment: .trailing)
+                .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
                 
         }
         .padding()

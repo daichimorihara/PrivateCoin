@@ -60,6 +60,7 @@ class CoinViewModel: ObservableObject {
                         }
                         return coin.updateAmount(amount: entity.amount)
                     }
+                    .sorted { $0.currentValue > $1.currentValue}
             })
             .sink { [weak self] returnedCoins in
                 self?.portCoins = returnedCoins

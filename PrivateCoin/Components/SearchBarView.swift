@@ -22,6 +22,7 @@ struct SearchBarView: View {
                 .padding(.vertical)
                 .disableAutocorrection(true)
                 .focused($name)
+                
             
             
         }

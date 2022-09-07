@@ -17,8 +17,10 @@ class CoinImageViewModel: ObservableObject {
     let folderName = "coin"
     let imageName: String
     init(coin: Coin) {
-        
         self.imageName = coin.id
+        Task {
+            await self.fetchCoinImage(urlString: coin.image)
+        }
     }
     
     

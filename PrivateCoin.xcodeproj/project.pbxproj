@@ -29,6 +29,7 @@
 		4209797828C48A3400ED8FD0 /* PortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4209797728C48A3400ED8FD0 /* PortViewModel.swift */; };
 		4209797A28C48A5100ED8FD0 /* PortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4209797928C48A5100ED8FD0 /* PortView.swift */; };
 		4211D40B28C5ACE500CF557D /* AddPortVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4211D40A28C5ACE500CF557D /* AddPortVIew.swift */; };
+		42818F5F28C89BD8001DA6F9 /* PeiChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42818F5E28C89BD8001DA6F9 /* PeiChart.swift */; };
 		42E2496928C6DE0C009E2208 /* PortCoinCol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2496828C6DE0C009E2208 /* PortCoinCol.swift */; };
 		42E2496B28C6FC38009E2208 /* PortRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2496A28C6FC38009E2208 /* PortRow.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		4209797728C48A3400ED8FD0 /* PortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortViewModel.swift; sourceTree = "<group>"; };
 		4209797928C48A5100ED8FD0 /* PortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortView.swift; sourceTree = "<group>"; };
 		4211D40A28C5ACE500CF557D /* AddPortVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPortVIew.swift; sourceTree = "<group>"; };
+		42818F5E28C89BD8001DA6F9 /* PeiChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeiChart.swift; sourceTree = "<group>"; };
 		42E2496828C6DE0C009E2208 /* PortCoinCol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortCoinCol.swift; sourceTree = "<group>"; };
 		42E2496A28C6FC38009E2208 /* PortRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +93,8 @@
 		4209794428C4826300ED8FD0 /* PrivateCoin */ = {
 			isa = PBXGroup;
 			children = (
+				42818F5928C89B54001DA6F9 /* Components */,
+				4211D40828C59DB400CF557D /* Service */,
 				4209797128C483D400ED8FD0 /* Port */,
 				4209797028C483C400ED8FD0 /* Extensions */,
 				4209795328C4828A00ED8FD0 /* CoinSection */,
@@ -114,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				4211D40928C59DC600CF557D /* Model */,
-				4211D40828C59DB400CF557D /* Service */,
 				4211D40728C59DA800CF557D /* ViewModel */,
 				4211D40628C59D9900CF557D /* Views */,
 			);
@@ -134,13 +137,9 @@
 		4209797128C483D400ED8FD0 /* Port */ = {
 			isa = PBXGroup;
 			children = (
-				4209797228C483EA00ED8FD0 /* PortDataService.swift */,
-				4209797428C4845600ED8FD0 /* PortContainer.xcdatamodeld */,
-				4209797728C48A3400ED8FD0 /* PortViewModel.swift */,
-				4209797928C48A5100ED8FD0 /* PortView.swift */,
-				4211D40A28C5ACE500CF557D /* AddPortVIew.swift */,
-				42E2496828C6DE0C009E2208 /* PortCoinCol.swift */,
-				42E2496A28C6FC38009E2208 /* PortRow.swift */,
+				42818F5D28C89BC1001DA6F9 /* ViewModel */,
+				42818F5B28C89B70001DA6F9 /* Model */,
+				42818F5A28C89B67001DA6F9 /* View */,
 			);
 			path = Port;
 			sourceTree = "<group>";
@@ -148,10 +147,7 @@
 		4211D40628C59D9900CF557D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4209796228C4832800ED8FD0 /* CoinImageView.swift */,
-				4209796128C4832800ED8FD0 /* CoinRow.swift */,
 				4209795E28C4832800ED8FD0 /* CoinView.swift */,
-				4209795F28C4832800ED8FD0 /* SearchBarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,6 +167,7 @@
 				4209795628C482B900ED8FD0 /* CoinService.swift */,
 				4209795828C482D400ED8FD0 /* CoinImageService.swift */,
 				4209795A28C482F500ED8FD0 /* ImageFileManager.swift */,
+				4209797228C483EA00ED8FD0 /* PortDataService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -181,6 +178,44 @@
 				4209795C28C4830D00ED8FD0 /* CoinResponse.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		42818F5928C89B54001DA6F9 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4209796228C4832800ED8FD0 /* CoinImageView.swift */,
+				4209796128C4832800ED8FD0 /* CoinRow.swift */,
+				4209795F28C4832800ED8FD0 /* SearchBarView.swift */,
+				42E2496828C6DE0C009E2208 /* PortCoinCol.swift */,
+				42E2496A28C6FC38009E2208 /* PortRow.swift */,
+				42818F5E28C89BD8001DA6F9 /* PeiChart.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		42818F5A28C89B67001DA6F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4209797928C48A5100ED8FD0 /* PortView.swift */,
+				4211D40A28C5ACE500CF557D /* AddPortVIew.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		42818F5B28C89B70001DA6F9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4209797428C4845600ED8FD0 /* PortContainer.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		42818F5D28C89BC1001DA6F9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4209797728C48A3400ED8FD0 /* PortViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +300,7 @@
 				4209796E28C4838300ED8FD0 /* Double.swift in Sources */,
 				4209796828C4832800ED8FD0 /* CoinImageView.swift in Sources */,
 				42E2496B28C6FC38009E2208 /* PortRow.swift in Sources */,
+				42818F5F28C89BD8001DA6F9 /* PeiChart.swift in Sources */,
 				4209796428C4832800ED8FD0 /* CoinView.swift in Sources */,
 				4209797828C48A3400ED8FD0 /* PortViewModel.swift in Sources */,
 				4209795728C482B900ED8FD0 /* CoinService.swift in Sources */,

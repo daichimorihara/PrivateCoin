@@ -16,7 +16,7 @@ struct PortRow: View {
             Spacer()
             Text(coin.currentValue.asValue())
             Text(allocation.asNumber())
-                .frame(width: UIScreen.main.bounds.width / 4, alignment: .trailing)
+                .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
         }
     }
  
