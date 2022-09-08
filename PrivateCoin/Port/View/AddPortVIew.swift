@@ -70,7 +70,7 @@ extension AddPortVIew {
                     } label: {
                         HStack(spacing: 0) {
                             Image(systemName: "chevron.left")
-                            Text("My Portfolio")
+                            Text("My Holdings")
                         }
                     }
                     

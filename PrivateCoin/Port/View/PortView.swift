@@ -12,28 +12,46 @@ struct PortView: View {
     @State private var showEdit = false
     
     var body: some View {
+        
+//        VStack {
+//            header
+//            PieView(vm: vm)
+//                .frame(width: UIScreen.main.bounds.width * 0.8,
+//                       height: UIScreen.main.bounds.width * 0.8)
+//            title
+//            List {
+//                ForEach(vm.portCoins) { coin in
+//                    PortRow(coin: coin, allocation: coin.currentValue / vm.totalValue * 100)
+//                }
+//            }
+//            .listStyle(PlainListStyle())
+//
+//            Spacer()
+//
+//        }
         VStack {
             header
-            title
-            List {
+            ScrollView {
+                PieView(vm: vm)
+                    .frame(width: UIScreen.main.bounds.width * 0.8,
+                           height: UIScreen.main.bounds.width * 0.8)
+                title
+                
                 ForEach(vm.portCoins) { coin in
                     PortRow(coin: coin, allocation: coin.currentValue / vm.totalValue * 100)
+                        .padding(5)
+                    Divider()
                 }
+                
             }
-            .listStyle(PlainListStyle())
-            
-            Spacer()
         }
+
         .fullScreenCover(isPresented: $showEdit) {
             
         } content: {
             AddPortVIew()
         }
-
-        
     }
-    
-    
 }
 
 struct PortView_Previews: PreviewProvider {
@@ -49,17 +67,25 @@ extension PortView {
             .font(.headline)
             .fontWeight(.heavy)
             .frame(width: UIScreen.main.bounds.width)
+            .padding(.vertical)
             .overlay(
-                Button(action: {
-                    showEdit.toggle()
-                }, label: {
-                    Text("Edit")
-                        .fontWeight(.semibold)
-                        .padding(.horizontal)
-                        
-                })
-                ,alignment: .leading
+                HStack {
+                    Button {
+                        showEdit.toggle()
+                    } label: {
+                        Text("Edit")
+                    }
+                    .padding(.horizontal)
+                    Spacer()
+                    Button {
+                        showEdit.toggle()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                    .padding(.horizontal)
+                }
             )
+            
     }
     
     private var title: some View {

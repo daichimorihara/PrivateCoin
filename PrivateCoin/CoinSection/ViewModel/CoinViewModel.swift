@@ -16,6 +16,9 @@ class CoinViewModel: ObservableObject {
     @Published var portAddCoins = [Coin]()
     @Published var searchText = ""
     @Published var portCoins = [Coin]()
+    
+    @Published var slices = [PieData]()
+    
     let service = CoinService()
     let portService = PortDataService.shared
     
@@ -64,25 +67,26 @@ class CoinViewModel: ObservableObject {
             })
             .sink { [weak self] returnedCoins in
                 self?.portCoins = returnedCoins
+                var temp: [PieData] = []
+                var total: Double = 0
+                for ccoin in returnedCoins {
+                    total += ccoin.currentValue
+                }
+                var endDeg: Double = 0
+                for (i, acoin) in returnedCoins.enumerated() {
+                    let degrees: Double = acoin.currentValue / total * 360
+                    let color = self?.chooseColor(i)
+                    temp.append(PieData(startAngle: Angle(degrees: endDeg),
+                                        endAngle: Angle(degrees: endDeg + degrees),
+                                        color: color ?? Color.green,
+                                        percent: acoin.currentValue / total * 100,
+                                        text: acoin.symbol.uppercased()))
+                    endDeg += degrees
+                }
+                self?.slices = temp
             }
             .store(in: &cancellables)
         
-        //portAddCoins
-        $searchText
-            .combineLatest($coins)
-            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
-            .map({(text, coins) -> [Coin] in
-                let lower = text.lowercased()
-                return coins.filter({
-                    $0.name.lowercased().contains(lower) ||
-                    $0.symbol.lowercased().contains(lower) ||
-                    $0.id.lowercased().contains(lower)
-                })
-            })
-            .sink { [weak self] returnedCoins in
-                self?.portAddCoins = returnedCoins
-            }
-            .store(in: &cancellables)
         
     }
 
@@ -114,5 +118,20 @@ class CoinViewModel: ObservableObject {
             total += coin.currentValue
         }
         return total
+    }
+    
+    func chooseColor(_ num: Int) -> Color {
+        let index = num % 8
+        switch index {
+        case 0: return .theme.zero
+        case 1: return .theme.one
+        case 2: return .theme.two
+        case 3: return .theme.three
+        case 4: return .theme.four
+        case 5: return .theme.five
+        case 6: return .theme.six
+        case 7: return .theme.seven
+        default: return .theme.zero
+        }
     }
 }
